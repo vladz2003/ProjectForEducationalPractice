@@ -1,0 +1,23 @@
+﻿<Window x:Class="MedicineProject.Windows.VoidDescriptionPatient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedicineProject.Windows"
+        mc:Ignorable="d"
+        Title="VoidDescriptionPatient" Height="100" Width="1000"
+        MinHeight="100" MaxHeight="100"
+        MinWidth="1000" MaxWidth="1000"
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="DBGridModel">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Рост пациента" Binding="{Binding ApproximateHeight}" Width="*"/>
+                <DataGridTextColumn Header="Цвет волос" Binding="{Binding HairColor}" Width="*"/>
+                <DataGridTextColumn Header="Особые приметы" Binding="{Binding SpecialSigns}" Width="*"/>
+                <DataGridTextColumn Header="Возраст пациента" Binding="{Binding ApproximateAge}" Width="*"/>
+                <DataGridTextColumn Header="Номер палаты" Binding="{Binding NumberOfChambers}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,57 @@
+﻿<Window x:Class="MedicineProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedicineProject"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1300"
+        MinHeight="450" MaxHeight="450"
+        MinWidth="450" MaxWidth="1300"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="#bae3e8"/>
+            <Button 
+                x:Name="GoBack" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Center" 
+                Background="#FFEB9EEF" 
+                FontFamily="Comic Sans MS" 
+                Width="150" 
+                Height="30" 
+                Margin="10" 
+                Content="Вернуться" 
+                Click="GoBack_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <TextBlock 
+                Text="Учет пациентов" 
+                Grid.Row="0" 
+                VerticalAlignment="Center" 
+                FontSize="30" 
+                HorizontalAlignment="Center"/>
+
+            <Frame 
+                Grid.Row="1" 
+                x:Name="MainFrame" 
+                ContentRendered="MainFrame_ContentRendered" 
+                NavigationUIVisibility="Hidden"/>
+
+            <Grid Grid.Row="3" Background="#bae3e8"/>
+            
+        </Grid>
+        
+    </Grid>
+</Window>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ClinicalHospitalRecordsModelContainer" CdmEntityContainer="ClinicalHospitalRecordsEntities">
+    <EntitySetMapping Name="DescriptionPatient">
+      <EntityTypeMapping TypeName="ClinicalHospitalRecordsModel.DescriptionPatient">
+        <MappingFragment StoreEntitySet="DescriptionPatient">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ApproximateHeight" ColumnName="ApproximateHeight" />
+          <ScalarProperty Name="HairColor" ColumnName="HairColor" />
+          <ScalarProperty Name="SpecialSigns" ColumnName="SpecialSigns" />
+          <ScalarProperty Name="ApproximateAge" ColumnName="ApproximateAge" />
+          <ScalarProperty Name="NumberOfChambers" ColumnName="NumberOfChambers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EndOfThreatment">
+      <EntityTypeMapping TypeName="ClinicalHospitalRecordsModel.EndOfThreatment">
+        <MappingFragment StoreEntitySet="EndOfThreatment">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="DischargeDate" ColumnName="DischargeDate" />
+          <ScalarProperty Name="ReasonForDischargeId" ColumnName="ReasonForDischargeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EntryMethod">
+      <EntityTypeMapping TypeName="ClinicalHospitalRecordsModel.EntryMethod">
+        <MappingFragment StoreEntitySet="EntryMethod">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicineCard">
+      <EntityTypeMapping TypeName="ClinicalHospitalRecordsModel.MedicineCard">
+        <MappingFragment StoreEntitySet="MedicineCard">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="PreliminaryDiagnosis" ColumnName="PreliminaryDiagnosis" />
+          <ScalarProperty Name="EntryMethodId" ColumnName="EntryMethodId" />
+          <ScalarProperty Name="RecieptDate" ColumnName="RecieptDate" />
+          <ScalarProperty Name="DescriptionsId" ColumnName="DescriptionsId" />
+          <ScalarProperty Name="EndOfThreatmentId" ColumnName="EndOfThreatmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReasonForDischarge">
+      <EntityTypeMapping TypeName="ClinicalHospitalRecordsModel.ReasonForDischarge">
+        <MappingFragment StoreEntitySet="ReasonForDischarge">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ReasonName" ColumnName="ReasonName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ClinicalHospitalRecordsModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transfer">
+      <EntityTypeMapping TypeName="ClinicalHospitalRecordsModel.Transfer">
+        <MappingFragment StoreEntitySet="Transfer">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="MedicineCardId" ColumnName="MedicineCardId" />
+          <ScalarProperty Name="DateOdTransfer" ColumnName="DateOdTransfer" />
+          <ScalarProperty Name="ChamberPhone" ColumnName="ChamberPhone" />
+          <ScalarProperty Name="NewChamber" ColumnName="NewChamber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

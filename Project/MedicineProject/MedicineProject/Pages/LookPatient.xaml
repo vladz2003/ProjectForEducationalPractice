@@ -1,0 +1,57 @@
+﻿<Page x:Class="MedicineProject.Pages.LookPatient"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedicineProject.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1300"
+      Title="LookPatient">
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="DBGridModel">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Фамилия Имя Отчество" Binding="{Binding FIO}" Width="*"/>
+                    <DataGridTextColumn Header="Возраст" Binding="{Binding Age}" Width="*"/>
+                    <DataGridTextColumn Header="Пол" Binding="{Binding Gender}" Width="*"/>
+                    <DataGridTextColumn Header="Предварительный диагноз" Binding="{Binding PreliminaryDiagnosis}" Width="*"/>
+                    <DataGridTextColumn Header="Поступление больного" Binding="{Binding EntryMethod.MethodName}" Width="*"/>
+                    <DataGridTextColumn Header="Дата поступления" Binding="{Binding RecieptDate}" Width="*"/>
+                    <DataGridTemplateColumn Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnEdit" Content="Изменить данные" Click="btnEdit_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnDescr" Content="Описание больного" Click="btnDescr_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnEnd" Content="Выписка больного" Click="btnEnd_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" >
+                <Button x:Name="AddBtn" Content="Добавить" Click="AddBtn_Click" Grid.Row="1"/>
+                <Button x:Name="DeleteBtn" Content="Удалить" Click="DeleteBtn_Click" Grid.Row="1"/>
+                <Button x:Name="RefreshBtn" Content="Обновить данные" Click="RefreshBtn_Click" Grid.Row="1"/>
+                <Button x:Name="SaveWordBtn" Content="Сохранить в Word" Click="SaveWordBtn_Click" Grid.Row="1"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

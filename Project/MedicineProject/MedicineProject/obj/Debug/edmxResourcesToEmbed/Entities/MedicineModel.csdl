@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClinicalHospitalRecordsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DescriptionPatient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApproximateHeight" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HairColor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialSigns" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ApproximateAge" Type="Int32" Nullable="false" />
+    <Property Name="NumberOfChambers" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MedicineCard" Relationship="Self.FK_MedicineCard_DescriptionPatient" FromRole="DescriptionPatient" ToRole="MedicineCard" />
+  </EntityType>
+  <EntityType Name="EndOfThreatment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DischargeDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ReasonForDischargeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ReasonForDischarge" Relationship="Self.FK_EndOfThreatment_ReasonForDischarge" FromRole="EndOfThreatment" ToRole="ReasonForDischarge" />
+    <NavigationProperty Name="MedicineCard" Relationship="Self.FK_MedicineCard_EndOfThreatment" FromRole="EndOfThreatment" ToRole="MedicineCard" />
+  </EntityType>
+  <EntityType Name="EntryMethod">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MethodName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MedicineCard" Relationship="Self.FK_MedicineCard_EntryMethod" FromRole="EntryMethod" ToRole="MedicineCard" />
+  </EntityType>
+  <EntityType Name="MedicineCard">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PreliminaryDiagnosis" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EntryMethodId" Type="Int32" Nullable="false" />
+    <Property Name="RecieptDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DescriptionsId" Type="Int32" />
+    <Property Name="EndOfThreatmentId" Type="Int32" />
+    <NavigationProperty Name="DescriptionPatient" Relationship="Self.FK_MedicineCard_DescriptionPatient" FromRole="MedicineCard" ToRole="DescriptionPatient" />
+    <NavigationProperty Name="EndOfThreatment" Relationship="Self.FK_MedicineCard_EndOfThreatment" FromRole="MedicineCard" ToRole="EndOfThreatment" />
+    <NavigationProperty Name="EntryMethod" Relationship="Self.FK_MedicineCard_EntryMethod" FromRole="MedicineCard" ToRole="EntryMethod" />
+    <NavigationProperty Name="Transfer" Relationship="Self.FK_Transfer_MedicineCard" FromRole="MedicineCard" ToRole="Transfer" />
+  </EntityType>
+  <EntityType Name="ReasonForDischarge">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReasonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="EndOfThreatment" Relationship="Self.FK_EndOfThreatment_ReasonForDischarge" FromRole="ReasonForDischarge" ToRole="EndOfThreatment" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Transfer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MedicineCardId" Type="Int32" Nullable="false" />
+    <Property Name="DateOdTransfer" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ChamberPhone" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NewChamber" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MedicineCard" Relationship="Self.FK_Transfer_MedicineCard" FromRole="Transfer" ToRole="MedicineCard" />
+  </EntityType>
+  <Association Name="FK_MedicineCard_DescriptionPatient">
+    <End Role="DescriptionPatient" Type="Self.DescriptionPatient" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MedicineCard" Type="Self.MedicineCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DescriptionPatient">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MedicineCard">
+        <PropertyRef Name="DescriptionsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EndOfThreatment_ReasonForDischarge">
+    <End Role="ReasonForDischarge" Type="Self.ReasonForDischarge" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EndOfThreatment" Type="Self.EndOfThreatment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReasonForDischarge">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EndOfThreatment">
+        <PropertyRef Name="ReasonForDischargeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicineCard_EndOfThreatment">
+    <End Role="EndOfThreatment" Type="Self.EndOfThreatment" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MedicineCard" Type="Self.MedicineCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EndOfThreatment">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MedicineCard">
+        <PropertyRef Name="EndOfThreatmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicineCard_EntryMethod">
+    <End Role="EntryMethod" Type="Self.EntryMethod" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MedicineCard" Type="Self.MedicineCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EntryMethod">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MedicineCard">
+        <PropertyRef Name="EntryMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transfer_MedicineCard">
+    <End Role="MedicineCard" Type="Self.MedicineCard" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Transfer" Type="Self.Transfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicineCard">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Transfer">
+        <PropertyRef Name="MedicineCardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ClinicalHospitalRecordsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DescriptionPatient" EntityType="Self.DescriptionPatient" />
+    <EntitySet Name="EndOfThreatment" EntityType="Self.EndOfThreatment" />
+    <EntitySet Name="EntryMethod" EntityType="Self.EntryMethod" />
+    <EntitySet Name="MedicineCard" EntityType="Self.MedicineCard" />
+    <EntitySet Name="ReasonForDischarge" EntityType="Self.ReasonForDischarge" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Transfer" EntityType="Self.Transfer" />
+    <AssociationSet Name="FK_MedicineCard_DescriptionPatient" Association="Self.FK_MedicineCard_DescriptionPatient">
+      <End Role="DescriptionPatient" EntitySet="DescriptionPatient" />
+      <End Role="MedicineCard" EntitySet="MedicineCard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EndOfThreatment_ReasonForDischarge" Association="Self.FK_EndOfThreatment_ReasonForDischarge">
+      <End Role="ReasonForDischarge" EntitySet="ReasonForDischarge" />
+      <End Role="EndOfThreatment" EntitySet="EndOfThreatment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicineCard_EndOfThreatment" Association="Self.FK_MedicineCard_EndOfThreatment">
+      <End Role="EndOfThreatment" EntitySet="EndOfThreatment" />
+      <End Role="MedicineCard" EntitySet="MedicineCard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicineCard_EntryMethod" Association="Self.FK_MedicineCard_EntryMethod">
+      <End Role="EntryMethod" EntitySet="EntryMethod" />
+      <End Role="MedicineCard" EntitySet="MedicineCard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transfer_MedicineCard" Association="Self.FK_Transfer_MedicineCard">
+      <End Role="MedicineCard" EntitySet="MedicineCard" />
+      <End Role="Transfer" EntitySet="Transfer" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

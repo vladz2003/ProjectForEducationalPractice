@@ -12,7 +12,7 @@
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="DBGridModel">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата выписки" Binding="{Binding DischargeDate}" Width="*"/>
-                <DataGridTextColumn Header="Цвет волос" Binding="{Binding ReasonForDischarge.ReasonName}" Width="*"/>
+                <DataGridTextColumn Header="Причина выписки" Binding="{Binding ReasonForDischarge.ReasonName}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
